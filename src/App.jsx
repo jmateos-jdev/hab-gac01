@@ -22,7 +22,11 @@ function App() {
           count is {count}
         </button>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+          Logramos correr un Webhook con GitHub en un servidor de Ubuntu 22.04
+        </p>
+        <p>
+          Utilizamos pm2 para mantener el servidor de Node.js corriendo, nginx para
+          el proxy reverso, y Flask para el webhook.
         </p>
       </div>
       <p className="read-the-docs">
