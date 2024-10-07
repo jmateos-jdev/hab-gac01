@@ -19,7 +19,7 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          Contador es {count}
+          Contador = {count}
         </button>
         <p>
           Logramos correr un Webhook con GitHub en un servidor de Ubuntu 22.04
