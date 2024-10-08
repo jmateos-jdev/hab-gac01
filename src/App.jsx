@@ -28,7 +28,8 @@ function App() {
           Agregamos pipeline de Prettier para mantener el código consistente.
         </p>
         <p>
-          Agregamos pipeline de Build para verificar que el código se pueda ejecutar.
+          Agregamos pipeline de Build para verificar que el código se pueda
+          ejecutar.
         </p>
       </div>
       <p className="read-the-docs">
