@@ -31,6 +31,7 @@ function App() {
           Agregamos pipeline de Build para verificar que el código se pueda
           ejecutar.
         </p>
+        <p>Agregamos pipeline de Vitest para verificar que los test pasen.</p>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more

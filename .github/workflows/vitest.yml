@@ -1,0 +1,14 @@
+name: Vitest
+
+on: [pull_request]
+
+jobs:
+  vitest-check:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4.2.1
+      - uses: actions/setup-node@v4.0.4
+      - name: Instalar dependencias
+        run: npm install
+      - name: Vitest
+        run: npm run test
