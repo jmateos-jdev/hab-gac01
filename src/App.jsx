@@ -25,8 +25,7 @@ function App() {
           Logramos correr un Webhook con GitHub en un servidor de Ubuntu 22.04
         </p>
         <p>
-          Utilizamos pm2 para mantener el servidor de Node.js corriendo, nginx
-          para el proxy reverso, y Flask para el webhook.
+          Agregamos pipeline de Prettier para mantener el código consistente.
         </p>
       </div>
       <p className="read-the-docs">
