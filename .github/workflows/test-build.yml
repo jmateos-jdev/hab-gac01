@@ -16,7 +16,6 @@ jobs:
         run: npx prettier --check .
 
   test-check:
-    needs: prettier-check
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4.2.1
@@ -27,7 +26,7 @@ jobs:
         run: npm run test
 
   build-check:
-    needs: test-check
+    needs: [prettier-check, test-check]
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4.2.1
