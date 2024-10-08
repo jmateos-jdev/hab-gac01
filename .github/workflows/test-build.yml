@@ -1,0 +1,25 @@
+name: Test Build
+
+on: [pull_request]
+
+jobs:
+  test-check:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4.2.1
+      - uses: actions/setup-node@v4.0.4
+      - name: Instalar dependencias
+        run: npm install
+      - name: Vitest
+        run: npm run test
+
+  build-check:
+    needs: test-check
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4.2.1
+      - uses: actions/setup-node@v4.0.4
+      - name: Instalar dependencias
+        run: npm install
+      - name: Build
+        run: npm run build
