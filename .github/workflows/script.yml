@@ -1,8 +1,8 @@
 name: Script
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  issues:
+    types: [opened]
 
 jobs:
   build:
@@ -12,10 +12,9 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const comment = 'Gracias por tu Pull Request';
-            const issue_number = context.payload.pull_request.number;
-            await github.issues.createComment({
-              ...context.repo,
-              issue_number,
-              body: comment
-            });
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Gracias por tu Pull Request'
+            })
