@@ -11,6 +11,24 @@ permissions:
   pull-requests: write
 
 jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.1
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.0.4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm install
+      - name: Write .env
+        run: echo "${{ secrets.DOT_ENV }}" >> .env
+      - name: Read .env
+        run: cat .env
+      - name: Build
+        run: npm run build
+
   dev-comment:
     runs-on: ubuntu-22.04
     environment: dev
