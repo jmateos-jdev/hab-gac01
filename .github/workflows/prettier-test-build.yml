@@ -4,7 +4,6 @@ on: [pull_request]
 
 jobs:
   prettier-check:
-    needs: [test-check]
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4.2.1 #Llevamos código del repositorio a la máquina virtual
@@ -27,7 +26,7 @@ jobs:
         run: npm run test
 
   build-check:
-    needs: [test-check]
+    needs: [test-check, prettier-check]
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4.2.1

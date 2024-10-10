@@ -1,0 +1,17 @@
+name: Script
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.1
+      - name: Run Script
+        uses: actions/github-script@v7.0.1
+        with:
+          script: |
+            console.log('Hello, world!');
