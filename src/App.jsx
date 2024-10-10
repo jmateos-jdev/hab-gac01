@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -19,21 +19,25 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+          Contador = {count}
         </button>
         <p>
           Logramos correr un Webhook con GitHub en un servidor de Ubuntu 22.04
         </p>
         <p>
-          Utilizamos pm2 para mantener el servidor de Node.js corriendo, nginx para
-          el proxy reverso, y Flask para el webhook.
+          Agregamos pipeline de Prettier para mantener el código consistente.
         </p>
+        <p>
+          Agregamos pipeline de Build para verificar que el código se pueda
+          ejecutar.
+        </p>
+        <p>Agregamos pipeline de Vitest para verificar que los test pasen.</p>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
