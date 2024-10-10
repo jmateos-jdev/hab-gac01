@@ -6,21 +6,61 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
-permissions: 
-    issues: write
-    pull-requests: write
+permissions:
+  issues: write
+  pull-requests: write
 
 jobs:
   build:
     runs-on: ubuntu-22.04
+    environment: dev
     steps:
-      - name: Run Script
-        uses: actions/github-script@v7.0.1
+      - name: Checkout
+        uses: actions/checkout@v4.2.1
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.0.4
         with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '👋 Gracias por tu Contribución'
-            })
+          node-version: 20
+      - name: Install dependencies
+        run: npm install
+      - name: Write .env
+        run: |
+          echo "SECRET=${{ secrets.SECRET }}" >> .env
+          echo "EXPIRE=${{ secrets.EXPIRE }}" >> .env
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
+          echo "PORT=${{ secrets.PORT }}" >> .env
+          echo "HOST=${{ vars.HOST }}" >> .env
+      - name: Read and print .env
+        run: |
+          echo "Contenido de .env:"
+          cat .env
+      - name: Build
+        run: npm run build
+
+  dev-comment:
+    runs-on: ubuntu-22.04
+    environment: dev
+    env:
+      VARIABLE_LOCAL: "Hola Mundo DEV"
+      VARIABLE_ENTORNO: ${{ vars.MI_PRIMER_VARIABLE }}
+    steps:
+      - name: Ver variable
+        run: |
+          echo "VALOR DE LA VARIABLE: ${{ vars.MI_PRIMER_VARIABLE }}"
+          echo "VALOR DE LA VARIABLE_LOCAL: ${{ env.VARIABLE_LOCAL }}"
+          echo "VALOR DE LA VARIABLE_ENTORNO: ${{ env.VARIABLE_ENTORNO }}"
+          echo "VALOR DE LA SECRET: ${{ secrets.MI_PRIMER_SECRET }}"
+
+  stg-comment:
+    runs-on: ubuntu-22.04
+    environment: stg
+    env:
+      VARIABLE_LOCAL: "Hola Mundo STG"
+      VARIABLE_ENTORNO: ${{ vars.MI_PRIMER_VARIABLE }}
+    steps:
+      - name: Ver variable
+        run: |
+          echo "VALOR DE LA VARIABLE: ${{ vars.MI_PRIMER_VARIABLE }}"
+          echo "VALOR DE LA VARIABLE_LOCAL: ${{ env.VARIABLE_LOCAL }}"
+          echo "VALOR DE LA VARIABLE_ENTORNO: ${{ env.VARIABLE_ENTORNO }}"
+          echo "VALOR DE LA SECRET: ${{ secrets.MI_PRIMER_SECRET }}"
