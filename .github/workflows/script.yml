@@ -13,6 +13,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-22.04
+    environment: dev
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.1
@@ -24,8 +25,10 @@ jobs:
         run: npm install
       - name: Write .env
         run: echo "${{ secrets.DOT_ENV }}" >> .env
-      - name: Read .env
-        run: cat .env
+      - name: Read and print .env
+        run: |
+          echo "Contenido de .env:"
+          cat .env
       - name: Build
         run: npm run build
 
